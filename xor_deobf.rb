@@ -63,3 +63,17 @@ rescue Exception => e
   puts e.message
 end
 
+__END__
+
+Usage:
+     xor_deobf.rb -i <input_file> [-o <output_file>] -k <key>
+
+Examples:
+     xor_deobf.rb -i binary.exe -o binary_xor.exe -k key
+
+Options
+    -i, --input-file filername       Input filename.
+    -o, --output-file filername      Output filename.
+    -k, --key key                    Key for XOR process.
+    -v, --version                    Display script version
+    -h, --help                       Display help messages
