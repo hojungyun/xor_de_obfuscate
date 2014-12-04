@@ -54,9 +54,9 @@ end
 # read file byte by byte then create byte array with XOR result
 begin
   File.open(options[:input_file], 'r') do |file|
-    byte_arr = file.each_byte.each_with_index.map do |elem, i|
+    byte_arr = file.each_byte.each_with_index.map do |byte, i|
       key = options[:key]
-      elem ^ key[i%key.size].ord
+      byte ^ key[i%key.size].ord # xor encoding
     end
     File.open(options[:output_file], 'w') { |file| file.write(byte_arr.pack('c*')) }
   end
