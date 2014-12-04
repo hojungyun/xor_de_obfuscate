@@ -62,10 +62,10 @@ end
 # read file byte by byte then create byte array with XOR result
 begin
   File.open(options[:input_file], 'r') do |input_file|
+    puts input_file.each_byte.size
     byte_arr = input_file.each_byte.each_with_index.map do |byte, i|
       key = options[:key]
       byte ^ key[i%key.size].ord # xor encoding
-      puts i
     end
     File.open(options[:output_file], 'w') do |output_file|
       puts byte_arr.size
