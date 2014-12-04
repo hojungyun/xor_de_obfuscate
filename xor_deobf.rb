@@ -73,7 +73,7 @@ rescue Exception => e
 end
 
 # display the result
-fm = FileMagic.new
+# fm = FileMagic.new
 puts "[+] Input File"
 puts "Filename: #{options[:input_file]}"
 # puts "Type: #{fm.file(options[:input_file])}"
