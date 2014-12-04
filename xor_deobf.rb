@@ -62,10 +62,21 @@ end
 # read file byte by byte then create byte array with XOR result
 begin
   File.open(options[:input_file], 'r') do |input_file|
-    byte_arr = input_file.each_byte.each_with_index.map do |byte, i|
+
+    # the following codes works for Mac/Linux but Windows
+    # byte_arr = input_file.each_byte.each_with_index.map do |byte, i|
+    #   key = options[:key]
+    #   byte ^ key[i%key.size].ord # xor encoding
+    # end
+
+    index = 0
+    byte_arr = []
+    while (byte = input_file.read(1)) do
       key = options[:key]
-      byte ^ key[i%key.size].ord # xor encoding
+      byte_arr << byte ^ key[index%key.size].ord # xor encoding
+      index += 1
     end
+
     File.open(options[:output_file], 'w') { |output_file| output_file.write(byte_arr.pack('c*')) }
   end
 rescue Exception => e
