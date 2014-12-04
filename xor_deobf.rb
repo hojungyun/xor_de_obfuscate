@@ -69,11 +69,15 @@ puts "[+] Input File"
 puts "Filename: #{options[:input_file]}"
 puts "Size: #{File.size(options[:input_file])}"
 puts "MD5: #{Digest::MD5.file(options[:input_file])}"
+puts "SHA1: #{Digest::SHA1.file(options[:input_file])}"
+puts "SHA256: #{Digest::SHA256.file(options[:input_file])}"
 puts
 puts "[+] Output File"
 puts "SFilename: #{options[:output_file]}"
-puts "Size: #{File.size(options[:input_file])}"
+puts "Size: #{File.size(options[:output_file])}"
 puts "MD5: #{Digest::MD5.file(options[:output_file])}"
+puts "SHA1: #{Digest::SHA1.file(options[:output_file])}"
+puts "SHA256: #{Digest::SHA256.file(options[:output_file])}"
 
 __END__
 
