@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 require 'optparse'
+require 'digest'
 
 # set the version of script
 VERSION = "0.1"
@@ -62,6 +63,17 @@ begin
 rescue Exception => e
   puts e.message
 end
+
+# display the result
+puts "[+] Input File"
+puts "Filename: #{options[:input_file]}"
+puts "Size: #{File.size(options[:input_file])}"
+puts "MD5: #{Digest::MD5.file(options[:input_file])}"
+puts
+puts "[+] Output File"
+puts "SFilename: #{options[:output_file]}"
+puts "Size: #{File.size(options[:input_file])}"
+puts "MD5: #{Digest::MD5.file(options[:output_file])}"
 
 __END__
 
