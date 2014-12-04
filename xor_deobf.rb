@@ -73,7 +73,7 @@ begin
     byte_arr = []
     while (byte = input_file.read(1)) do
       key = options[:key]
-      byte_arr << byte ^ key[index%key.size].ord # xor encoding
+      byte_arr << (byte.ord ^ key[index%key.size].ord) # xor encoding
       index += 1
     end
 
