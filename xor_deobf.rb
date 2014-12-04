@@ -2,6 +2,15 @@
 require 'optparse'
 require 'digest'
 
+begin
+  require 'filemagic'
+rescue LoadError
+  puts "[+] ruby-filemagic is not installed. Installing now..."
+  system("gem install ruby-filemagic --no-ri --no-rdoc")
+  puts "[+] ruby-filemagic has been installed. Run the script again"
+  exit 0
+end
+
 # set the version of script
 VERSION = "0.1"
 
@@ -65,15 +74,18 @@ rescue Exception => e
 end
 
 # display the result
+fm = FileMagic.new
 puts "[+] Input File"
 puts "Filename: #{options[:input_file]}"
+puts "Type: #{fm.file(options[:input_file])}"
 puts "Size: #{File.size(options[:input_file])}"
 puts "MD5: #{Digest::MD5.file(options[:input_file])}"
 puts "SHA1: #{Digest::SHA1.file(options[:input_file])}"
 puts "SHA256: #{Digest::SHA256.file(options[:input_file])}"
 puts
 puts "[+] Output File"
-puts "SFilename: #{options[:output_file]}"
+puts "Filename: #{options[:output_file]}"
+puts "Type: #{fm.file(options[:output_file])}"
 puts "Size: #{File.size(options[:output_file])}"
 puts "MD5: #{Digest::MD5.file(options[:output_file])}"
 puts "SHA1: #{Digest::SHA1.file(options[:output_file])}"
