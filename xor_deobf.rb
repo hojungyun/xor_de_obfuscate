@@ -61,12 +61,12 @@ end
 
 # read file byte by byte then create byte array with XOR result
 begin
-  File.open(options[:input_file], 'r') do |file|
-    byte_arr = file.each_byte.each_with_index.map do |byte, i|
+  File.open(options[:input_file], 'r') do |input_file|
+    byte_arr = input_file.each_byte.each_with_index.map do |byte, i|
       key = options[:key]
       byte ^ key[i%key.size].ord # xor encoding
     end
-    File.open(options[:output_file], 'w') { |file| file.write(byte_arr.pack('c*')) }
+    File.open(options[:output_file], 'w') { |output_file| output_file.write(byte_arr.pack('c*')) }
   end
 rescue Exception => e
   puts e.message
