@@ -67,7 +67,7 @@ begin
       byte ^ key[i%key.size].ord # xor encoding
     end
     File.open(options[:output_file], 'w') do |output_file|
-      puts byte_arr.pack('c*')
+      puts byte_arr.size
       output_file.write(byte_arr.pack('c*'))
     end
   end
